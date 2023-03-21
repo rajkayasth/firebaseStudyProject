@@ -24,4 +24,5 @@
     <string name="err_msg_enter_confirm_password">Please Enter Confirm Password</string>
     <string name="err_msg_password_and_confirm_password_mismatch">Password and Confirm Password Not Matched</string>
     <string name="err_msg_agree_terms_and_condition"><![CDATA[Please Select Terms & Conditions]]></string>
+    <string name="lbl_please_wait">Please wait</string>
 </resources>
