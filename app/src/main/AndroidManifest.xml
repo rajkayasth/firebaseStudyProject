@@ -14,23 +14,32 @@
         android:theme="@style/Theme.FireBaseStudyProject"
         tools:targetApi="31">
         <activity
-            android:name=".SplashActivity"
+            android:name=".base.BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.register.RegisterActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/noActionBar" />
+        <activity
+            android:name=".ui.splash.SplashActivity"
             android:exported="true"
-            android:theme="@style/noActionBar"
-            >
-
+            android:screenOrientation="fullSensor"
+            android:theme="@style/noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/noActionBar" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -24,4 +24,32 @@
         <item name="android:fontFamily">@font/allura</item>
     </style>
 
+    <style name="customEditTextStyle" parent="ThemeOverlay.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">16dp</item>
+    </style>
+
+    <style name="CustomTilStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/colorText</item>
+        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/colorStrokeGray</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="hintTextColor">@color/colorPrimary</item>
+        <item name="boxCornerRadiusBottomStart">3dp</item>
+        <item name="boxCornerRadiusTopEnd">3dp</item>
+        <item name="boxCornerRadiusTopStart">3dp</item>
+        <item name="boxCornerRadiusBottomEnd">3dp</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="boxStrokeErrorColor">@color/colorRed</item>
+        <item name="errorTextColor">@color/colorRed</item>
+        <item name="errorTextAppearance">@style/ErrorText</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+    </style>
+    <style name="ErrorText">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/montserrat_medium</item>
+    </style>
 </resources>

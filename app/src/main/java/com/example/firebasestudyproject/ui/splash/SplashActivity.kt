@@ -1,13 +1,13 @@
-package com.example.firebasestudyproject
+package com.example.firebasestudyproject.ui.splash
 
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.WindowInsets
-import android.view.WindowManager
+import com.example.firebasestudyproject.MainActivity
+import com.example.firebasestudyproject.R
+import com.example.firebasestudyproject.ui.login.LoginActivity
 import com.example.firebasestudyproject.utils.Utils
 
 class SplashActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed(
             {
                 /**Launching Main Activity*/
-                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                 finish() //call this when your activity is done and should be close
             }, 5000
         )

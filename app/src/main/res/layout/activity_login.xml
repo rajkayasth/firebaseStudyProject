@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListner"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.login.LoginActivity">
+
+        <!--region Header layout-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clHeaderLayoutLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/auth_header_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/content_desc"
+                android:scaleType="fitXY"
+                android:src="@drawable/auth_screens_background" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/auth_logo_width_size"
+                android:layout_height="@dimen/auth_logo_height_size"
+                android:contentDescription="@string/content_desc"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tutorials_eu_logo"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--endregion Header layout-->
+
+        <!--region Login Header Text-->
+        <com.example.firebasestudyproject.customwidgets.BoldTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="@string/title_login"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/title_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clHeaderLayoutLogin" />
+        <!--endregion Login Header Text-->
+
+        <!--region tilEmail-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmailLogin"
+            style="@style/CustomTilStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="35dp"
+            android:background="@color/white"
+            android:hint="@string/et_hint_email_id"
+            android:textColorHint="@color/colorSecondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+            <com.example.firebasestudyproject.customwidgets.CustomEditText
+                android:id="@+id/etEmailLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/et_padding"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/et_textSize"
+                tools:text="abc@gmail.com" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--endregion tilEmail-->
+
+        <!--region tilEmail-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPasswordLogin"
+            style="@style/CustomTilStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:hint="@string/et_hint_password"
+            android:textColorHint="@color/colorSecondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilEmailLogin">
+
+            <com.example.firebasestudyproject.customwidgets.CustomEditText
+                android:id="@+id/etPasswordLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="@dimen/et_padding"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/et_textSize"
+                tools:text="abc@gmail.com" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--endregion tilEmail-->
+
+        <!--region text forgot password-->
+        <com.example.firebasestudyproject.customwidgets.BoldTextView
+            android:id="@+id/txtForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="@dimen/clickable_text_view_padding"
+            android:text="@string/lbl_forgot_password"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/forgot_password_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilPasswordLogin" />
+        <!--endregion text forgot password-->
+
+        <!--region LoginButton-->
+        <com.example.firebasestudyproject.customwidgets.CustomButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:onClick="@{clickListner::onClick}"
+            android:paddingHorizontal="@dimen/btn_padding"
+            android:text="@string/btn_lbl_login"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_textSize"
+            app:layout_constraintTop_toBottomOf="@id/txtForgotPassword" />
+        <!--endregion LoginButton-->
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llNotHaveAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin">
+
+            <com.example.firebasestudyproject.customwidgets.CustomTextView
+                android:id="@+id/txtDonTHaveAnAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="@dimen/clickable_text_view_padding"
+                android:text="@string/lbl_don_t_have_Account"
+                android:textColor="@color/colorSecondaryText" />
+            <com.example.firebasestudyproject.customwidgets.BoldTextView
+                android:id="@+id/txtRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:onClick="@{clickListner::onClick}"
+                android:padding="@dimen/clickable_text_view_padding"
+                android:text="@string/lbl_register"
+                android:textColor="@color/colorSecondaryText" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
