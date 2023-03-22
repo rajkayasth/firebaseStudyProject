@@ -10,6 +10,9 @@ import com.example.firebasestudyproject.base.BaseActivity
 import com.example.firebasestudyproject.databinding.ActivityRegisterBinding
 import com.example.firebasestudyproject.ui.login.LoginActivity
 import com.example.firebasestudyproject.utils.Utils
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class RegisterActivity : BaseActivity(), View.OnClickListener {
     lateinit var dataBinding: ActivityRegisterBinding
@@ -34,7 +37,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
 
             }
             dataBinding.btnRegister -> {
-                validateRegisterDetails()
+                registerUser()
             }
             dataBinding.txtLogin -> {
                 startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
@@ -61,7 +64,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                 false
             }
 
-            TextUtils.isEmpty(dataBinding.etEmailRegister.text.toString().trim { it <= ' ' })  -> {
+            TextUtils.isEmpty(dataBinding.etEmailRegister.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
                 false
             }
@@ -98,10 +101,37 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                 false
             }
             else -> {
-                showErrorSnackBar("Register Successful", false)
+                //showErrorSnackBar("Register Successful", false)
                 true
             }
         }
     }
     // END
+
+    private fun registerUser() {
+        //check with validation function if entries are correct or not
+        if (validateRegisterDetails()) {
+
+            showProgressDialog("")
+            val email: String = dataBinding.etEmailRegister.text.toString().trim()
+            val password: String =
+                dataBinding.etPasswordRegister.text.toString().trim()
+
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(
+                    OnCompleteListener { task ->
+                        hideProgressDialog()
+                        if (task.isSuccessful) {
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
+                            showErrorSnackBar("You are Registered Successfully", false)
+
+                            FirebaseAuth.getInstance().signOut()
+                            finish()
+                        } else {
+                            task.exception?.message?.let { showErrorSnackBar(it, true) }
+                        }
+                    })
+
+        }
+    }
 }
