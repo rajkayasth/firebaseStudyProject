@@ -124,6 +124,9 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                         if (task.isSuccessful) {
                             val firebaseUser: FirebaseUser = task.result!!.user!!
                             showErrorSnackBar("You are Registered Successfully", false)
+
+                            FirebaseAuth.getInstance().signOut()
+                            finish()
                         } else {
                             task.exception?.message?.let { showErrorSnackBar(it, true) }
                         }
