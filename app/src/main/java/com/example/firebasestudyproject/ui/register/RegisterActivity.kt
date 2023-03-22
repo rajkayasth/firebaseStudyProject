@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
 import com.example.firebasestudyproject.R
 import com.example.firebasestudyproject.base.BaseActivity
 import com.example.firebasestudyproject.databinding.ActivityRegisterBinding
+import com.example.firebasestudyproject.firestore.FireStoreClass
+import com.example.firebasestudyproject.model.User
 import com.example.firebasestudyproject.ui.login.LoginActivity
 import com.example.firebasestudyproject.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
@@ -120,18 +123,35 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
                     OnCompleteListener { task ->
-                        hideProgressDialog()
                         if (task.isSuccessful) {
                             val firebaseUser: FirebaseUser = task.result!!.user!!
-                            showErrorSnackBar("You are Registered Successfully", false)
+                            val user = User(
+                                id = firebaseUser.uid,
+                                firstName = dataBinding.etFirstName.text.toString().trim(),
+                                lastName = dataBinding.etLastName.text.toString().trim(),
+                                email = dataBinding.etEmailRegister.text.toString().trim(),
+                            )
 
-                            FirebaseAuth.getInstance().signOut()
-                            finish()
+
+                            FireStoreClass().registerUser(this@RegisterActivity, user)
+
+//                            FirebaseAuth.getInstance().signOut()
+//                            finish()
                         } else {
+                            hideProgressDialog()
                             task.exception?.message?.let { showErrorSnackBar(it, true) }
                         }
                     })
 
         }
+    }
+
+    fun userRegisterSucesss() {
+        hideProgressDialog()
+        Toast.makeText(
+            this@RegisterActivity,
+            "You have registered successfully",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
