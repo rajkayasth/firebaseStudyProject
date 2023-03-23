@@ -1,9 +1,12 @@
 package com.example.firebasestudyproject.firestore
 
 import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import com.example.firebasestudyproject.model.User
 import com.example.firebasestudyproject.ui.login.LoginActivity
+import com.example.firebasestudyproject.ui.profile.ProfileActivity
 import com.example.firebasestudyproject.ui.register.RegisterActivity
 import com.example.firebasestudyproject.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -45,6 +48,18 @@ class FireStoreClass {
 
                 val user = document.toObject(User::class.java)
 
+                val sharedPreferences =
+                    activity.getSharedPreferences(Constants.APP_PREFERENCE, Context.MODE_PRIVATE)
+
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.putString(
+                    //key    :- logged_in_username
+                    //values :- user?.firstname and last name
+                    Constants.LOGGED_IN_USERNAME,
+                    "${user?.firstName} ${user?.lastName}"
+                )
+                editor.apply()
+
                 //start
                 when (activity) {
                     is LoginActivity -> {
@@ -61,6 +76,28 @@ class FireStoreClass {
                 }
                 Log.e(activity.javaClass.simpleName, "getUserDetials: ${e.message}")
 
+            }
+    }
+
+    fun updateUserDetails(activity: Activity, userHashMap: HashMap<String, Any>) {
+        mFireStore.collection(Constants.USERS)
+            .document(getCurrentUssrId())
+            .update(userHashMap)
+            .addOnSuccessListener {
+                when (activity) {
+                    is ProfileActivity -> {
+                        activity.userProfileUpdateSuccess()
+                    }
+                }
+
+            }
+            .addOnFailureListener { e ->
+                when (activity) {
+                    is ProfileActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e("TAG", "updateUserDetails: Error While Updating the Details ", e)
             }
     }
 

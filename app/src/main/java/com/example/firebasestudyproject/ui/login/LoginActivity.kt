@@ -12,7 +12,9 @@ import com.example.firebasestudyproject.base.BaseActivity
 import com.example.firebasestudyproject.databinding.ActivityLoginBinding
 import com.example.firebasestudyproject.firestore.FireStoreClass
 import com.example.firebasestudyproject.model.User
+import com.example.firebasestudyproject.ui.profile.ProfileActivity
 import com.example.firebasestudyproject.ui.register.RegisterActivity
+import com.example.firebasestudyproject.utils.Constants
 import com.example.firebasestudyproject.utils.Utils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -84,7 +86,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                FireStoreClass().getUserDetials(this@LoginActivity)
+                        FireStoreClass().getUserDetials(this@LoginActivity)
                     } else {
                         hideProgressDialog()
                         showErrorSnackBar(task.exception?.message.toString(), true)
@@ -101,8 +103,23 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             Log.i("TAG", "userLoggedInSuccess:${user.lastName} ")
             Log.i("TAG", "userLoggedInSuccess:${user.email} ")
         }
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-        finish()
+        when (user?.profileCompleted) {
+            0 -> {
+                /**Move to Profile Screen*/
+                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                intent.putExtra(Constants.EXTRA_USER_DETAILS,user)
+                startActivity(intent)
+                finish()
+
+            }
+            1 -> {
+                /**Move to MainScreen Screen*/
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
+
+            }
+        }
+
 
     }
 

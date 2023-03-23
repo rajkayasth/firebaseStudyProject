@@ -28,4 +28,19 @@
     <string name="enter_your_forgot_text">Enter Your Email or Username we\'ll\nsend you a email to reset password</string>
     <string name="lbl_submit">Submit</string>
     <string name="lbl_logout">Logout</string>
+    <string name="lbl_profile">Profile</string>
+    <string name="lbl_mobile_number">Mobile Number</string>
+    <string name="lbl_Male">Male</string>
+    <string name="lbl_female">Female</string>
+    <string name="lbl_save">Save</string>
+    <string name="lbl_home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_info">Info</string>
+    <string name="lbl_Camera">Camera</string>
+    <string name="lbl_Gallery">Gallery</string>
+    <string name="lbl_cancel">cancel</string>
+    <string name="lbl_ok">OK</string>
+    <string name="permission_denied_message">Permission Denied</string>
+    <string name="err_msg_enter_mobile">Please Enter Mobile Number</string>
 </resources>

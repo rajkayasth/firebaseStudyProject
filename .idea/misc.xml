@@ -3,14 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/bg_margin_dialog.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/bg_rounded_transparent.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/button_background.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/gender_tab_selector.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/gender_text_selector.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/ic_add_photo.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/toolbar_bg.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/user_image_bg.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_base.xml" value="0.10989583333333333" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_main.xml" value="0.20185185185185187" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_register.xml" value="0.2359375" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/dialog_progess.xml" value="0.25" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/dialog_show_confirmation_positive_nagetive_button.xml" value="0.25" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/dialog_success_failure.xml" value="0.25" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_select_gallary_bottom_sheet.xml" value="0.25" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/xml/file_path.xml" value="0.25" />
       </map>
     </option>
   </component>
