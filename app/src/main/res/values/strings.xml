@@ -34,6 +34,7 @@
     <string name="lbl_female">Female</string>
     <string name="lbl_save">Save</string>
     <string name="lbl_home">Home</string>
+    <string name="lbl_double_tap_exit">Please Click again to exit the app.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_info">Info</string>
@@ -43,4 +44,14 @@
     <string name="lbl_ok">OK</string>
     <string name="permission_denied_message">Permission Denied</string>
     <string name="err_msg_enter_mobile">Please Enter Mobile Number</string>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_prodcut">Products</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_Settings">Settings</string>
+    <string name="lbl_edit">Edit</string>
+    <string name="btn_lbl_logout">LOgOut</string>
+    <string name="lbl_addresses">Address</string>
 </resources>

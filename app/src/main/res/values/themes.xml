@@ -17,7 +17,7 @@
     <style name="noActionBar" parent="Theme.MaterialComponents.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        
+
     </style>
     <style name="splashTextStyle">
         <item name="fontFamily">@font/allura</item>

@@ -8,7 +8,7 @@ import com.example.firebasestudyproject.R
 
 class GlideLoader(val context: Context) {
 
-    fun loadImage(imageUri: Uri, imageView: AppCompatImageView) {
+    fun loadImage(imageUri: Any, imageView: AppCompatImageView) {
         try {
             Glide.with(context)
                 .load(imageUri)

@@ -12,6 +12,7 @@ import com.example.firebasestudyproject.base.BaseActivity
 import com.example.firebasestudyproject.databinding.ActivityLoginBinding
 import com.example.firebasestudyproject.firestore.FireStoreClass
 import com.example.firebasestudyproject.model.User
+import com.example.firebasestudyproject.ui.dashboard.DashBoardActivity
 import com.example.firebasestudyproject.ui.profile.ProfileActivity
 import com.example.firebasestudyproject.ui.register.RegisterActivity
 import com.example.firebasestudyproject.utils.Constants
@@ -107,14 +108,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             0 -> {
                 /**Move to Profile Screen*/
                 val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
-                intent.putExtra(Constants.EXTRA_USER_DETAILS,user)
+                intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
                 startActivity(intent)
                 finish()
 
             }
             1 -> {
                 /**Move to MainScreen Screen*/
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
                 finish()
 
             }

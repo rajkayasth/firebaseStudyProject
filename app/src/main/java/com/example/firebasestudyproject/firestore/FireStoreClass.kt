@@ -9,6 +9,7 @@ import com.example.firebasestudyproject.model.User
 import com.example.firebasestudyproject.ui.login.LoginActivity
 import com.example.firebasestudyproject.ui.profile.ProfileActivity
 import com.example.firebasestudyproject.ui.register.RegisterActivity
+import com.example.firebasestudyproject.ui.settings.SettingsActivity
 import com.example.firebasestudyproject.utils.Constants
 import com.example.firebasestudyproject.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
@@ -69,6 +70,9 @@ class FireStoreClass {
                     is LoginActivity -> {
                         activity.userLoggedInSuccess(user)
                     }
+                    is SettingsActivity -> {
+                        activity.userDetailSuccess(user)
+                    }
 
                 }
             }.addOnFailureListener { e ->
@@ -77,6 +81,9 @@ class FireStoreClass {
                         activity.hideProgressDialog()
                     }
 
+                    is SettingsActivity -> {
+                        activity.hideProgressDialog()
+                    }
                 }
                 Log.e(activity.javaClass.simpleName, "getUserDetials: ${e.message}")
 

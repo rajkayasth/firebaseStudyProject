@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private fun initialisedUI() {
 
         val userName = preferences.getString(Constants.LOGGED_IN_USERNAME, "")
-        dataBinding.txtUserName.text = "the Logged in UserName $userName"
+       // dataBinding.txtUserName.text = "the Logged in UserName $userName"
 
     }
 }
