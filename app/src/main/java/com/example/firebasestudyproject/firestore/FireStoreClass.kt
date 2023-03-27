@@ -3,15 +3,19 @@ package com.example.firebasestudyproject.firestore
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
 import android.util.Log
 import com.example.firebasestudyproject.model.User
 import com.example.firebasestudyproject.ui.login.LoginActivity
 import com.example.firebasestudyproject.ui.profile.ProfileActivity
 import com.example.firebasestudyproject.ui.register.RegisterActivity
 import com.example.firebasestudyproject.utils.Constants
+import com.example.firebasestudyproject.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class FireStoreClass {
 
@@ -99,6 +103,45 @@ class FireStoreClass {
                 }
                 Log.e("TAG", "updateUserDetails: Error While Updating the Details ", e)
             }
+    }
+
+    fun uploadImageToCloudStorage(activity: Activity, imageUri: Uri?) {
+        val sRef: StorageReference =
+            FirebaseStorage.getInstance().reference.child(
+                "${Constants.USER_PROFILE_IMAGE}${System.currentTimeMillis()}.${
+                    Utils.getFileExtension(
+                        activity,
+                        imageUri
+                    )
+                }"
+            )
+        sRef.putFile(imageUri!!).addOnSuccessListener { taskSnapShot ->
+            //The image upload is Success
+            Log.e(
+                Constants.FIREBASE_TAG,
+                "uploadImageToCloudStorage: ${taskSnapShot.metadata?.reference?.downloadUrl}",
+            )
+            /** GET DOWNLOADABLE URL FROM TASK SNAPSHOT */
+            taskSnapShot.metadata?.reference?.downloadUrl?.addOnSuccessListener { url ->
+                Log.e(Constants.FIREBASE_TAG, "download image URL :$url ")
+                when (activity) {
+                    is ProfileActivity -> {
+                        activity.imageUploadSuccess(url.toString())
+                    }
+                }
+            }
+        }.addOnFailureListener { exception ->
+            when (activity) {
+                is ProfileActivity -> {
+                    activity.hideProgressDialog()
+                }
+            }
+            Log.e(
+                Constants.FIREBASE_TAG,
+                "uploadImageToCloudStorage: ${exception.message}",
+                exception
+            )
+        }
     }
 
 }

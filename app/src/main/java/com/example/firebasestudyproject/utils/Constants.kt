@@ -10,4 +10,10 @@ object Constants {
     const val FEMALE = "female"
     const val MOBILE = "mobile"
     const val GENDER = "gender"
+    const val IMAGE = "image"
+    const val PROFILE_COMPLETED = "profileCompleted"
+    const val USER_PROFILE_IMAGE = "userProfileImage"
+
+    const val FIREBASE_TAG = "FireBase_Image_URL"
+
 }
