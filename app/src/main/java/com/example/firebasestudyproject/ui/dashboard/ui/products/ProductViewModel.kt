@@ -1,13 +1,13 @@
-package com.example.firebasestudyproject.ui.dashboard.ui.notifications
+package com.example.firebasestudyproject.ui.dashboard.ui.products
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class OrdersViewModel : ViewModel() {
+class ProductViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Orders Fragment"
+        value = "This is Product Fragment"
     }
     val text: LiveData<String> = _text
 }

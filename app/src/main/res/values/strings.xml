@@ -54,4 +54,17 @@
     <string name="lbl_edit">Edit</string>
     <string name="btn_lbl_logout">LOgOut</string>
     <string name="lbl_addresses">Address</string>
+    <string name="title_profile_completed">Profile Completed</string>
+    <string name="title_edit_profile">Edit Profile</string>
+    <string name="action_add_products">Add Product</string>
+    <string name="lbl_add_product">Add Product</string>
+    <string name="et_product_title">Product Title</string>
+    <string name="et_product_price">Product Price</string>
+    <string name="et_product_Quantity">Product Quantity</string>
+    <string name="err_product_title">Please Enter Product Title</string>
+    <string name="err_image_select">Please Selecet Product Image</string>
+    <string name="err_product_price">Please Enter Product Price</string>
+    <string name="err_product_desc">Please Enter Product Description</string>
+    <string name="err_product_quantity">Please Enter product Quantity</string>
+    <string name="et_product_desc">Product Description</string>
 </resources>

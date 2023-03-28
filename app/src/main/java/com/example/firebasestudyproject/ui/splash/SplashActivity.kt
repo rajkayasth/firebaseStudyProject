@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
                 /**Launching Main Activity*/
                 startActivity(Intent(this@SplashActivity, DashBoardActivity::class.java))
                 finish() //call this when your activity is done and should be close
-            }, 5000
+            }, 2000
         )
     }
 }

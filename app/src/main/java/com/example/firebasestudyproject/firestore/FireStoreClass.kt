@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import com.example.firebasestudyproject.model.Product
 import com.example.firebasestudyproject.model.User
+import com.example.firebasestudyproject.ui.dashboard.ui.products.addproducts.AddProductActivity
 import com.example.firebasestudyproject.ui.login.LoginActivity
 import com.example.firebasestudyproject.ui.profile.ProfileActivity
 import com.example.firebasestudyproject.ui.register.RegisterActivity
@@ -112,10 +114,10 @@ class FireStoreClass {
             }
     }
 
-    fun uploadImageToCloudStorage(activity: Activity, imageUri: Uri?) {
+    fun uploadImageToCloudStorage(activity: Activity, imageUri: Uri?, imageType: String) {
         val sRef: StorageReference =
             FirebaseStorage.getInstance().reference.child(
-                "${Constants.USER_PROFILE_IMAGE}${System.currentTimeMillis()}.${
+                "${imageType}${System.currentTimeMillis()}.${
                     Utils.getFileExtension(
                         activity,
                         imageUri
@@ -135,11 +137,19 @@ class FireStoreClass {
                     is ProfileActivity -> {
                         activity.imageUploadSuccess(url.toString())
                     }
+                    is AddProductActivity -> {
+                        activity.imageUploadSuccess(url.toString())
+
+                    }
+
                 }
             }
         }.addOnFailureListener { exception ->
             when (activity) {
                 is ProfileActivity -> {
+                    activity.hideProgressDialog()
+                }
+                is AddProductActivity -> {
                     activity.hideProgressDialog()
                 }
             }
@@ -149,6 +159,16 @@ class FireStoreClass {
                 exception
             )
         }
+    }
+
+    fun uploadProductDetails(activity: AddProductActivity, productInfo: Product) {
+        mFireStore.collection(Constants.PRODUCT).document().set(productInfo, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.productUploadSuccess()
+            }.addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e("UPLOAD_PRODUCT_DETAILS", "uploadProductDetails: ERROR IN UPLOADING ",e )
+            }
     }
 
 }

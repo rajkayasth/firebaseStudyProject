@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_product"
-        android:name="com.example.firebasestudyproject.ui.dashboard.ui.home.ProductFragment"
+        android:name="com.example.firebasestudyproject.ui.dashboard.ui.products.ProductFragment"
         android:label="@string/title_prodcut"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products"/>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_orders"
-        android:name="com.example.firebasestudyproject.ui.dashboard.ui.notifications.OrdersFragment"
+        android:name="com.example.firebasestudyproject.ui.dashboard.ui.orders.OrdersFragment"
         android:label="@string/title_orders"
         tools:layout="@layout/fragment_orders" />
 </navigation>

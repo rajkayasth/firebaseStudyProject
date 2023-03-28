@@ -18,6 +18,7 @@ import com.example.firebasestudyproject.base.BaseActivity
 import com.example.firebasestudyproject.databinding.ActivityProfileBinding
 import com.example.firebasestudyproject.firestore.FireStoreClass
 import com.example.firebasestudyproject.model.User
+import com.example.firebasestudyproject.ui.dashboard.DashBoardActivity
 import com.example.firebasestudyproject.utils.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -60,16 +61,48 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
             mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
         dataBinding.apply {
-            etFirstNameProfile.isEnabled = false
+
             etFirstNameProfile.setText(mUserDetails.firstName)
-
-            etLastNameProfile.isEnabled = false
             etLastNameProfile.setText(mUserDetails.lastName)
-
             etEmailProfile.isEnabled = false
             etEmailProfile.setText(mUserDetails.email)
+
+            if (mUserDetails.profileCompleted == 0) {
+                txtToolbarTitle.text = getString(R.string.title_profile_completed)
+                etFirstNameProfile.isEnabled = false
+                etLastNameProfile.isEnabled = false
+            } else {
+                setupActionBar()
+                txtToolbarTitle.text = getString(R.string.title_edit_profile)
+                GlideLoader(this@ProfileActivity).loadImage(
+                    mUserDetails.image,
+                    dataBinding.imgUserPhoto
+                )
+
+                if (mUserDetails.mobile.isNotEmpty()) {
+                    etMobileProfile.setText(mUserDetails.mobile)
+                }
+                if (mUserDetails.gender == Constants.MALE) {
+                    rbMale.isChecked = true
+                } else {
+                    rbFeMale.isChecked = true
+                }
+
+
+            }
         }
 
+    }
+
+
+    private fun setupActionBar() {
+        setSupportActionBar(dataBinding.toolBarProfileScreen)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp)
+        }
+        dataBinding.toolBarProfileScreen.setNavigationOnClickListener { onBackPressed() }
     }
 
     override fun onClick(v: View?) {
@@ -149,7 +182,8 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
                     if (profileImageUri != null) {
                         FireStoreClass().uploadImageToCloudStorage(
                             this@ProfileActivity,
-                            profileImageUri
+                            profileImageUri,
+                            Constants.USER_PROFILE_IMAGE
                         )
                     } else {
                         updateUserProfileDetails()
@@ -162,6 +196,16 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
     private fun updateUserProfileDetails() {
         val userHashMap = HashMap<String, Any>()
 
+        val firstName = dataBinding.etFirstNameProfile.text.toString().trim()
+        if (firstName != mUserDetails.firstName) {
+            userHashMap[Constants.FIRSTNAME] = firstName
+        }
+
+        val lastName = dataBinding.etLastNameProfile.text.toString().trim()
+        if (lastName != mUserDetails.lastName) {
+            userHashMap[Constants.LASTNAME] = lastName
+        }
+
         val mobileNumber =
             dataBinding.etMobileProfile.text.toString().trim { it <= ' ' }
 
@@ -173,12 +217,17 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         if (mUserProfileImageURL.isNotEmpty()) {
             userHashMap[Constants.IMAGE] = mUserProfileImageURL
         }
-        if (mobileNumber.isNotEmpty()) {
+        if (mobileNumber.isNotEmpty() && mobileNumber != mUserDetails.mobile) {
             userHashMap[Constants.MOBILE] = mobileNumber
+        }
+
+        if (gender.isNotEmpty() && gender != mUserDetails.gender) {
+            userHashMap[Constants.GENDER] = gender
+
         }
         userHashMap[Constants.GENDER] = gender
         userHashMap[Constants.PROFILE_COMPLETED] = 1
-       // showProgressDialog("")
+        // showProgressDialog("")
         FireStoreClass().updateUserDetails(this@ProfileActivity, userHashMap)
     }
 
@@ -194,7 +243,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
     fun userProfileUpdateSuccess() {
         hideProgressDialog()
         showErrorSnackBar("Profile Updated Successfully", false)
-        startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
+        startActivity(Intent(this@ProfileActivity, DashBoardActivity::class.java))
         finish()
     }
 

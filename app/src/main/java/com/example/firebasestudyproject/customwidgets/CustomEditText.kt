@@ -13,7 +13,7 @@ class CustomEditText(context: Context, attributeSet: AttributeSet) :
     }
 
     private fun applyFont() {
-        val boldTypeface: Typeface = Typeface.createFromAsset(context.assets, "montserrat_bold.ttf")
+        val boldTypeface: Typeface = Typeface.createFromAsset(context.assets, "montserrat.ttf")
         typeface = boldTypeface
 
     }

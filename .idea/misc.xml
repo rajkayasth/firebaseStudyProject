@@ -17,6 +17,7 @@
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/item_grey_border_background.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/toolbar_bg.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/user_image_bg.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_add_product.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_base.xml" value="0.10989583333333333" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_dash_board.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
@@ -29,10 +30,13 @@
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/dialog_progess.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/dialog_show_confirmation_positive_nagetive_button.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/dialog_success_failure.xml" value="0.25" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_add_product.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_products.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_select_gallary_bottom_sheet.xml" value="0.25" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/menu/add_prodcuts_menu.xml" value="0.24895833333333334" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/menu/dashboard_menu.xml" value="0.24895833333333334" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/xml/file_path.xml" value="0.25" />

@@ -1,4 +1,4 @@
-package com.example.firebasestudyproject.ui.dashboard.ui.notifications
+package com.example.firebasestudyproject.ui.dashboard.ui.orders
 
 import android.os.Bundle
 import android.view.LayoutInflater
