@@ -67,4 +67,5 @@
     <string name="err_product_desc">Please Enter Product Description</string>
     <string name="err_product_quantity">Please Enter product Quantity</string>
     <string name="et_product_desc">Product Description</string>
+    <string name="lbl_no_product">NO PRODUCT AVAILABLE</string>
 </resources>

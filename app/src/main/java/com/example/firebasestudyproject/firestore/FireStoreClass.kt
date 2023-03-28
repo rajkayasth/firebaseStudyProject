@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import androidx.fragment.app.Fragment
 import com.example.firebasestudyproject.model.Product
 import com.example.firebasestudyproject.model.User
+import com.example.firebasestudyproject.ui.dashboard.ui.products.ProductFragment
 import com.example.firebasestudyproject.ui.dashboard.ui.products.addproducts.AddProductActivity
 import com.example.firebasestudyproject.ui.login.LoginActivity
 import com.example.firebasestudyproject.ui.profile.ProfileActivity
@@ -167,8 +169,28 @@ class FireStoreClass {
                 activity.productUploadSuccess()
             }.addOnFailureListener { e ->
                 activity.hideProgressDialog()
-                Log.e("UPLOAD_PRODUCT_DETAILS", "uploadProductDetails: ERROR IN UPLOADING ",e )
+                Log.e("UPLOAD_PRODUCT_DETAILS", "uploadProductDetails: ERROR IN UPLOADING ", e)
             }
+    }
+
+    fun getProductList(fragment: Fragment) {
+        mFireStore.collection(Constants.PRODUCT)
+            .whereEqualTo(Constants.USER_ID, getCurrentUssrId())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("PRODUCT_LIST", "getProductList: ${document.documents}")
+                val productList: ArrayList<Product> = ArrayList()
+                for (i in document.documents) {
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+                    productList.add(product)
+                }
+                when (fragment) {
+                    is ProductFragment -> {
+                        fragment.successProductListFromFireStore(productList)
+                    }
+                }
+            }.addOnFailureListener { }
     }
 
 }

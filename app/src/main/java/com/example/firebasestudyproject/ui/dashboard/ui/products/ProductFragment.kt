@@ -2,6 +2,7 @@ package com.example.firebasestudyproject.ui.dashboard.ui.products
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.core.view.MenuHost
@@ -10,12 +11,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firebasestudyproject.R
+import com.example.firebasestudyproject.adapters.ProductListAdapter
+import com.example.firebasestudyproject.base.BaseFragment
 import com.example.firebasestudyproject.databinding.FragmentProductsBinding
+import com.example.firebasestudyproject.firestore.FireStoreClass
+import com.example.firebasestudyproject.model.Product
 import com.example.firebasestudyproject.ui.dashboard.ui.products.addproducts.AddProductActivity
 import com.example.firebasestudyproject.ui.settings.SettingsActivity
 
-class ProductFragment : Fragment() {
+class ProductFragment : BaseFragment() {
 
     private var _binding: FragmentProductsBinding? = null
 
@@ -56,11 +62,38 @@ class ProductFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getProductListFromFireStore()
+    }
+
+    fun successProductListFromFireStore(productList: ArrayList<Product>) {
+        hideProgressDialog()
+        for (i in productList) {
+            if (productList.size > 0) {
+                binding.rvProductItems.visibility = View.VISIBLE
+                binding.txtNoProductAvailable.visibility = View.GONE
+
+                binding.rvProductItems.layoutManager = LinearLayoutManager(activity)
+                binding.rvProductItems.setHasFixedSize(true)
+
+                val adapterProduct = ProductListAdapter(requireContext(), productList)
+                binding.rvProductItems.adapter = adapterProduct
+            } else {
+                binding.rvProductItems.visibility = View.GONE
+                binding.txtNoProductAvailable.visibility = View.VISIBLE
+
+            }
+
+        }
+    }
+
+    fun getProductListFromFireStore() {
+        showProgressDialog()
+        FireStoreClass().getProductList(this@ProductFragment)
     }
 
     override fun onDestroyView() {

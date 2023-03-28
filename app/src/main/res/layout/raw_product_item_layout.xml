@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="@dimen/item_list_marginTop"
+        android:background="@color/white"
+        android:padding="@dimen/item_list_padding">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clItemImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rv_item_image_backgroung"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgItem"
+                android:layout_width="@dimen/item_image_width"
+                android:layout_height="@dimen/item_image_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.example.firebasestudyproject.customwidgets.BoldTextView
+            android:id="@+id/txtProductName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/rv_item_text_size"
+            app:layout_constraintStart_toEndOf="@id/clItemImage"
+            app:layout_constraintTop_toTopOf="@id/clItemImage"
+            tools:text="TITLE IMAGE" />
+        <com.example.firebasestudyproject.customwidgets.CustomTextView
+            android:id="@+id/txtProductPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/rv_item_price_textSize"
+            app:layout_constraintStart_toEndOf="@id/clItemImage"
+            app:layout_constraintTop_toBottomOf="@id/txtProductName"
+            tools:text="$10000.00" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

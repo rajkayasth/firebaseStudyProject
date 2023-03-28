@@ -17,6 +17,8 @@ object Constants {
     const val USER_PROFILE_IMAGE = "userProfileImage"
     const val PRODUCT_IMAGE = "Product_Image"
     const val PRODUCT = "products"
+    const val USER_ID = "userId"
+    const val USERID = "userId"
 
     const val FIREBASE_TAG = "FireBase_Image_URL"
 

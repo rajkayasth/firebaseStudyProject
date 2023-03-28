@@ -15,6 +15,7 @@
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/ic_vector_chevron_right.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/ic_vector_settings.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/item_grey_border_background.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/rv_item_image_backgroung.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/toolbar_bg.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/user_image_bg.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_add_product.xml" value="0.25" />
@@ -36,6 +37,7 @@
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_products.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/fragment_select_gallary_bottom_sheet.xml" value="0.25" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/raw_product_item_layout.xml" value="0.24895833333333334" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/menu/add_prodcuts_menu.xml" value="0.24895833333333334" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/menu/dashboard_menu.xml" value="0.24895833333333334" />

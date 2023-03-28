@@ -223,7 +223,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             description = binding.etProductDescription.text.toString().trim(),
             stock_quantity = binding.etProductQuantity.text.toString().trim(),
             image = mProductImageUrl,
-            id = ""
+            product_id = ""
         )
 
         FireStoreClass().uploadProductDetails(this@AddProductActivity, product)
