@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_dashboard_bg"
+    android:layout_margin="10dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDashboardItem"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="8dp"
+        android:background="@color/colorLightGray"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_splash_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewLineDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_gray_B9BCBE"
+        app:layout_constraintTop_toBottomOf="@id/imgDashboardItem" />
+
+    <com.example.firebasestudyproject.customwidgets.BoldTextView
+        android:id="@+id/txtDashBoardItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/viewLineDashboard"
+        tools:text="TITLE" />
+
+
+    <com.example.firebasestudyproject.customwidgets.CustomTextView
+        android:id="@+id/txtDashBoardItemPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:textSize="14sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtDashBoardItemTitle"
+        tools:text="$1000" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

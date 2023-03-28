@@ -2,6 +2,7 @@ package com.example.firebasestudyproject.ui.dashboard.ui.dashboard
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.core.view.MenuHost
@@ -9,18 +10,24 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firebasestudyproject.R
+import com.example.firebasestudyproject.adapters.DashBoardAdapter
+import com.example.firebasestudyproject.adapters.ProductListAdapter
+import com.example.firebasestudyproject.base.BaseFragment
 import com.example.firebasestudyproject.databinding.FragmentDashboardBinding
+import com.example.firebasestudyproject.firestore.FireStoreClass
+import com.example.firebasestudyproject.model.Product
 import com.example.firebasestudyproject.ui.settings.SettingsActivity
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseFragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
 
 
     override fun onCreateView(
@@ -59,17 +66,43 @@ class DashboardFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getDashBoardItemList()
+    }
+
+    private fun getDashBoardItemList() {
+        showProgressDialog()
+        FireStoreClass().getDashBoardItemList(this@DashboardFragment)
+    }
+
+    fun successDashBoardItemsList(dashBoardItemList: ArrayList<Product>) {
+        hideProgressDialog()
+        for (i in dashBoardItemList) {
+            if (dashBoardItemList.size > 0) {
+                binding.rvDashBoardItems.visibility = View.VISIBLE
+                binding.txtNoDashBoardITemFound.visibility = View.GONE
+
+                binding.rvDashBoardItems.layoutManager = GridLayoutManager(activity, 2)
+                binding.rvDashBoardItems.setHasFixedSize(true)
+
+                val adapterDashBoard = DashBoardAdapter(requireContext(), dashBoardItemList)
+                binding.rvDashBoardItems.adapter = adapterDashBoard
+            } else {
+                binding.rvDashBoardItems.visibility = View.GONE
+                binding.txtNoDashBoardITemFound.visibility = View.VISIBLE
+
+            }
+
+        }
     }
 
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -80,7 +81,8 @@ class ProductFragment : BaseFragment() {
                 binding.rvProductItems.layoutManager = LinearLayoutManager(activity)
                 binding.rvProductItems.setHasFixedSize(true)
 
-                val adapterProduct = ProductListAdapter(requireContext(), productList)
+                val adapterProduct =
+                    ProductListAdapter(requireContext(), productList, this@ProductFragment)
                 binding.rvProductItems.adapter = adapterProduct
             } else {
                 binding.rvProductItems.visibility = View.GONE
@@ -89,6 +91,11 @@ class ProductFragment : BaseFragment() {
             }
 
         }
+    }
+
+    fun deleteProduct(productId: String) {
+        Toast.makeText(activity, "You can now Delete the Product $productId", Toast.LENGTH_SHORT)
+            .show()
     }
 
     fun getProductListFromFireStore() {

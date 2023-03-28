@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.firebasestudyproject.model.Product
 import com.example.firebasestudyproject.model.User
+import com.example.firebasestudyproject.ui.dashboard.ui.dashboard.DashboardFragment
 import com.example.firebasestudyproject.ui.dashboard.ui.products.ProductFragment
 import com.example.firebasestudyproject.ui.dashboard.ui.products.addproducts.AddProductActivity
 import com.example.firebasestudyproject.ui.login.LoginActivity
@@ -190,7 +191,31 @@ class FireStoreClass {
                         fragment.successProductListFromFireStore(productList)
                     }
                 }
-            }.addOnFailureListener { }
+            }.addOnFailureListener {
+                when (fragment) {
+                    is ProductFragment -> {
+                        fragment.hideProgressDialog()
+                    }
+                }
+            }
+    }
+
+    fun getDashBoardItemList(fragment: DashboardFragment) {
+        mFireStore.collection(Constants.PRODUCT)
+            .get()
+            .addOnSuccessListener { document ->
+                val productList: ArrayList<Product> = ArrayList()
+                for (i in document.documents) {
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+                    productList.add(product)
+                }
+                fragment.successDashBoardItemsList(productList)
+
+            }.addOnFailureListener { e ->
+                fragment.hideProgressDialog()
+                Log.e("DASHBOARD_ITEM", "getItemList: ERROR WHILE GETTING DASHBOARD ITEM", e)
+            }
     }
 
 }

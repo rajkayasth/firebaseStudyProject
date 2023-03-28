@@ -36,26 +36,37 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgDeleteProduct"
+            android:layout_width="30dp"
+            android:layout_marginStart="4dp"
+            android:layout_height="30dp"
+            app:layout_constraintStart_toEndOf="@id/txtProductName"
+            android:src="@drawable/ic_delete_red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.example.firebasestudyproject.customwidgets.BoldTextView
             android:id="@+id/txtProductName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="10dp"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/rv_item_text_size"
+            app:layout_constraintEnd_toStartOf="@id/imgDeleteProduct"
             app:layout_constraintStart_toEndOf="@id/clItemImage"
             app:layout_constraintTop_toTopOf="@id/clItemImage"
             tools:text="TITLE IMAGE" />
+
         <com.example.firebasestudyproject.customwidgets.CustomTextView
             android:id="@+id/txtProductPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/rv_item_price_textSize"
+            app:layout_constraintEnd_toStartOf="@id/imgDeleteProduct"
             app:layout_constraintStart_toEndOf="@id/clItemImage"
             app:layout_constraintTop_toBottomOf="@id/txtProductName"
             tools:text="$10000.00" />

@@ -7,17 +7,31 @@
     android:background="@color/white"
     tools:context=".ui.dashboard.ui.dashboard.DashboardFragment">
 
+
+
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/txtNoDashBoardITemFound"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/lbl_no_dashboard_item"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:visibility="gone"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDashBoardItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:listitem="@layout/raw_dashboard_item_layout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
