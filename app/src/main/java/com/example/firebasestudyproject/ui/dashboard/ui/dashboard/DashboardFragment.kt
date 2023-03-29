@@ -19,7 +19,9 @@ import com.example.firebasestudyproject.base.BaseFragment
 import com.example.firebasestudyproject.databinding.FragmentDashboardBinding
 import com.example.firebasestudyproject.firestore.FireStoreClass
 import com.example.firebasestudyproject.model.Product
+import com.example.firebasestudyproject.ui.productdetails.ProductDetailsActivity
 import com.example.firebasestudyproject.ui.settings.SettingsActivity
+import com.example.firebasestudyproject.utils.Constants
 
 class DashboardFragment : BaseFragment() {
 
@@ -96,6 +98,16 @@ class DashboardFragment : BaseFragment() {
 
                 val adapterDashBoard = DashBoardAdapter(requireContext(), dashBoardItemList)
                 binding.rvDashBoardItems.adapter = adapterDashBoard
+                adapterDashBoard.setOnClickListener(object : DashBoardAdapter.OnClickListener {
+                    override fun onClick(position: Int, product: Product) {
+                        val intent = Intent(activity, ProductDetailsActivity::class.java)
+                        intent.putExtra(Constants.EXTRA_PRODUCT_ID, product.product_id)
+                        intent.putExtra(Constants.EXTRA_PRODUCT_OWNER_ID, product.userId)
+                        startActivity(intent)
+                    }
+
+                })
+
             } else {
                 binding.rvDashBoardItems.visibility = View.GONE
                 binding.txtNoDashBoardITemFound.visibility = View.VISIBLE

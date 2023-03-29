@@ -16,6 +16,7 @@ class DashBoardAdapter(
     private val list: ArrayList<Product>
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var onClickListeners: OnClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(
             LayoutInflater.from(context).inflate(
@@ -32,6 +33,12 @@ class DashBoardAdapter(
             GlideLoader(context).loadImage(model.image, holder.imgHeader)
             holder.productTitle.text = model.title
             holder.productPrice.text = "$${model.price}"
+            holder.itemView.setOnClickListener {
+                if (onClickListeners != null) {
+                    onClickListeners!!.onClick(position, model)
+                }
+            }
+
         }
     }
 
@@ -45,5 +52,13 @@ class DashBoardAdapter(
         val productPrice: AppCompatTextView = itemView.findViewById(R.id.txtDashBoardItemPrice)
 
 
+    }
+
+    fun setOnClickListener(onClickListener: OnClickListener) {
+        this.onClickListeners = onClickListener
+    }
+
+    interface OnClickListener {
+        fun onClick(position: Int, product: Product)
     }
 }

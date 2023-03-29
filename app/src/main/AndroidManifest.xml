@@ -15,6 +15,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.productdetails.ProductDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/noActionBar" />
+        <activity
             android:name=".ui.dashboard.ui.products.addproducts.AddProductActivity"
             android:exported="false"
             android:screenOrientation="portrait"

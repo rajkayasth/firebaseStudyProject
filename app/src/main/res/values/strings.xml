@@ -73,4 +73,9 @@
     <string name="lbl_yes">Yes</string>
     <string name="lbl_no">No</string>
     <string name="lbl_delete">DELETE</string>
+    <string name="lbl_product_details">Product Details</string>
+    <string name="lbl_product_description">Product Description</string>
+    <string name="lbl_stock_quantity">Stock Quantity</string>
+    <string name="lbl_Add_to_cart">ADD TO CART</string>
+
 </resources>

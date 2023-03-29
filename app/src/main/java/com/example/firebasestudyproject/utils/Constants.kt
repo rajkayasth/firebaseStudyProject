@@ -22,4 +22,8 @@ object Constants {
 
     const val FIREBASE_TAG = "FireBase_Image_URL"
 
+    const val EXTRA_PRODUCT_ID = "extra_product_id"
+
+    const val EXTRA_PRODUCT_OWNER_ID = "extra_product_owner_id"
+
 }

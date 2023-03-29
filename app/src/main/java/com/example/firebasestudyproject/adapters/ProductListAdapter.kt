@@ -1,6 +1,7 @@
 package com.example.firebasestudyproject.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.firebasestudyproject.R
 import com.example.firebasestudyproject.model.Product
 import com.example.firebasestudyproject.ui.dashboard.ui.products.ProductFragment
+import com.example.firebasestudyproject.ui.productdetails.ProductDetailsActivity
+import com.example.firebasestudyproject.utils.Constants
 import com.example.firebasestudyproject.utils.GlideLoader
 
 open class ProductListAdapter(
@@ -38,6 +41,12 @@ open class ProductListAdapter(
             holder.imgDeleteIcon.setOnClickListener {
                 //TODO Delete the Product
                 fragment.deleteProduct(model.product_id)
+            }
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, ProductDetailsActivity::class.java)
+                intent.putExtra(Constants.EXTRA_PRODUCT_ID, model.product_id)
+                intent.putExtra(Constants.EXTRA_PRODUCT_OWNER_ID, model.userId)
+                context.startActivity(intent)
             }
         }
     }

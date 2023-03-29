@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/app_gradient_color_background.xml" value="0.132" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/bg_border_squre_white.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/bg_bottom_nav_color.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/bg_margin_dialog.xml" value="0.132" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/drawable/bg_rounded_transparent.xml" value="0.132" />
@@ -26,6 +27,7 @@
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_main.xml" value="0.20185185185185187" />
+        <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_product_details.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_register.xml" value="0.2359375" />
         <entry key="..\:/Study_Projects/FireBaseStudyProject/app/src/main/res/layout/activity_settings.xml" value="0.25" />

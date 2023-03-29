@@ -12,6 +12,7 @@ import com.example.firebasestudyproject.ui.dashboard.ui.dashboard.DashboardFragm
 import com.example.firebasestudyproject.ui.dashboard.ui.products.ProductFragment
 import com.example.firebasestudyproject.ui.dashboard.ui.products.addproducts.AddProductActivity
 import com.example.firebasestudyproject.ui.login.LoginActivity
+import com.example.firebasestudyproject.ui.productdetails.ProductDetailsActivity
 import com.example.firebasestudyproject.ui.profile.ProfileActivity
 import com.example.firebasestudyproject.ui.register.RegisterActivity
 import com.example.firebasestudyproject.ui.settings.SettingsActivity
@@ -231,6 +232,24 @@ class FireStoreClass {
                 Log.e("DELETE_PRODUCT", "deleteProduct: Error While deleting the product", e)
             }
 
+    }
+
+    fun getProductDetailsById(activity: ProductDetailsActivity, productId: String) {
+        mFireStore.collection(Constants.PRODUCT)
+            .document(productId)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.d("GET_PRODUCT_FROM_ID", "$document")
+                val product = document.toObject(Product::class.java)
+                if (product != null) {
+                    activity.productDetailsSuccess(product)
+                }
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e("GET_PRODUCT_FROM_ID", " Error While fetching the product", e)
+
+            }
     }
 
 
