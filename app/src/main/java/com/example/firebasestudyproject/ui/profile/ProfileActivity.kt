@@ -117,7 +117,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
 
                                 CommonDialogs.setConfirmationDialogWithPositiveNaiveButton(
-                                    this@ProfileActivity,
+                                    this@ProfileActivity,"",
                                     "Please Select One Option",
                                     object : ConfirmationListener {
                                         override fun onCancelClick() {

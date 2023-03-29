@@ -12,6 +12,7 @@ object CommonDialogs {
 
     fun setConfirmationDialogWithPositiveNaiveButton(
         mContext: Context,
+        title: String,
         text: String?,
         listener: ConfirmationListener?,
         btnYesName: String,
@@ -23,6 +24,7 @@ object CommonDialogs {
         dialog.setContentView(binding.root)
         dialog.setCanceledOnTouchOutside(false)
         binding.info = text
+        binding.title = title
         binding.txtConfirmationMessage.text = text
         binding.btnYesDialog.text = btnYesName
         binding.btnNoDialog.text = btnNoName

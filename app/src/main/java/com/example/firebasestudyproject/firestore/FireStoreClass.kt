@@ -218,4 +218,20 @@ class FireStoreClass {
             }
     }
 
+    fun deleteProduct(fragment: ProductFragment, productId: String) {
+
+        mFireStore.collection(Constants.PRODUCT)
+            .document(productId)
+            .delete()
+            .addOnSuccessListener {
+                fragment.productDeleteSuccess()
+            }
+            .addOnFailureListener { e ->
+                fragment.hideProgressDialog()
+                Log.e("DELETE_PRODUCT", "deleteProduct: Error While deleting the product", e)
+            }
+
+    }
+
+
 }

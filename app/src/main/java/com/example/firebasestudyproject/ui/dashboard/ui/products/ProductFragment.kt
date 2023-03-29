@@ -21,6 +21,8 @@ import com.example.firebasestudyproject.firestore.FireStoreClass
 import com.example.firebasestudyproject.model.Product
 import com.example.firebasestudyproject.ui.dashboard.ui.products.addproducts.AddProductActivity
 import com.example.firebasestudyproject.ui.settings.SettingsActivity
+import com.example.firebasestudyproject.utils.CommonDialogs
+import com.example.firebasestudyproject.utils.ConfirmationListener
 
 class ProductFragment : BaseFragment() {
 
@@ -94,13 +96,37 @@ class ProductFragment : BaseFragment() {
     }
 
     fun deleteProduct(productId: String) {
-        Toast.makeText(activity, "You can now Delete the Product $productId", Toast.LENGTH_SHORT)
-            .show()
+
+        CommonDialogs.setConfirmationDialogWithPositiveNaiveButton(
+            requireContext(), getString(R.string.lbl_delete),
+            getString(R.string.delete_product_msg),
+            object : ConfirmationListener {
+                override fun onCancelClick() {
+                }
+
+                override fun onYesClick() {
+                    showProgressDialog()
+                    FireStoreClass().deleteProduct(this@ProductFragment, productId = productId)
+                }
+
+                override fun onNoClick() {
+                }
+
+            },
+            btnYesName = getString(R.string.lbl_yes),
+            btnNoName = getString(R.string.lbl_no)
+        )
     }
 
     fun getProductListFromFireStore() {
         showProgressDialog()
         FireStoreClass().getProductList(this@ProductFragment)
+    }
+
+    fun productDeleteSuccess() {
+        hideProgressDialog()
+        Toast.makeText(activity, "Product Deleted Successfully", Toast.LENGTH_SHORT).show()
+        getProductListFromFireStore()
     }
 
     override fun onDestroyView() {

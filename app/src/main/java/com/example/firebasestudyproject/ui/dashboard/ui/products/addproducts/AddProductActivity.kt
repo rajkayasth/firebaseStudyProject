@@ -89,7 +89,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
                         override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                             if (report!!.areAllPermissionsGranted()) {
                                 CommonDialogs.setConfirmationDialogWithPositiveNaiveButton(
-                                    this@AddProductActivity,
+                                    this@AddProductActivity,"",
                                     "Please Select One Option",
                                     object : ConfirmationListener {
                                         override fun onCancelClick() {
@@ -149,7 +149,8 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun createImageUri(): Uri? {
-        val image = File(applicationContext.filesDir, "camera_photo.png")
+        val image =
+            File(applicationContext.filesDir, "camera_photo${System.currentTimeMillis()}.png")
         return FileProvider.getUriForFile(
             applicationContext,
             "com.example.firebasestudyproject.fileProvider",
@@ -208,6 +209,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         hideProgressDialog()
         Toast.makeText(this@AddProductActivity, "Uploaded successfully", Toast.LENGTH_SHORT).show()
         finish()
+        profileImageUri = null
     }
 
 
