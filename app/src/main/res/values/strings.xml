@@ -77,5 +77,13 @@
     <string name="lbl_product_description">Product Description</string>
     <string name="lbl_stock_quantity">Stock Quantity</string>
     <string name="lbl_Add_to_cart">ADD TO CART</string>
+    <string name="default_notification_channel_id">fcm-default_channel</string>
+    <string name="default_channel_name">Topic</string>
+    <string name="lbl_subscribe">Subscribe</string>
+    <string name="lbl_log_token">Log Token</string>
+    <string name="msg_token_fmt">Message Token</string>
+    <string name="msg_subscribed">Notification Subscribed</string>
+    <string name="msg_failed">SUBSCRIBTION FAILED</string>
+    <string name="fcm_message">FCM MESSAGE</string>
 
 </resources>
