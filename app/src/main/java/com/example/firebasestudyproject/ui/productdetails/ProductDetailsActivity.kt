@@ -13,6 +13,8 @@ import com.example.firebasestudyproject.firestore.FireStoreClass
 import com.example.firebasestudyproject.model.Product
 import com.example.firebasestudyproject.utils.Constants
 import com.example.firebasestudyproject.utils.GlideLoader
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 
 class ProductDetailsActivity : BaseActivity() {
     lateinit var dataBinding: ActivityProductDetailsBinding
@@ -36,7 +38,7 @@ class ProductDetailsActivity : BaseActivity() {
         }
         if (FireStoreClass().getCurrentUssrId() == productOwnerId) {
             dataBinding.btnAddToCart.visibility = View.GONE
-        }else{
+        } else {
             dataBinding.btnAddToCart.visibility = View.VISIBLE
         }
         getProductDetialsById()
