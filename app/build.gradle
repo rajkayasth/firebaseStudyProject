@@ -74,6 +74,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
     implementation 'com.google.firebase:firebase-messaging:23.1.2'
 
+    //inApp messaging
+    implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:20.3.1'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:20.3.1'
+
 
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics-ktx'
