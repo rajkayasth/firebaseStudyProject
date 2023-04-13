@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorThemePink">#ED2173</color>
+    <color name="colorLightGray">#F1F1F1</color>
     <color name="colorThemeOrange">#F4442d</color>
 
     <color name="colorPrimaryText">#222934</color>
@@ -59,6 +60,8 @@
     <color name="light_blue_search">#99A0B0</color>
     <color name="colorSnackBarError">#DF2012</color>
     <color name="colorSnackBarSuccess">#41B446</color>
+    <color name="color_transparent">#00FFFFFF</color>
+    <color name="color_gray_B9BCBE">#B9BCBE</color>
 
 
 </resources>
