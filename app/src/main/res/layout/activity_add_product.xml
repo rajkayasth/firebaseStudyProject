@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.dashboard.ui.products.addproducts.AddProductActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBarAddProduct"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/toolbar_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.example.firebasestudyproject.customwidgets.BoldTextView
+                android:id="@+id/txtToolbarTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/lbl_add_product"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgHeaderMain"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/colorLightGray"
+            app:layout_constraintTop_toBottomOf="@id/toolBarAddProduct" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgAddProduct"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{clickListener::onClick}"
+            android:padding="8dp"
+            android:src="@drawable/ic_add_photo"
+            app:layout_constraintBottom_toBottomOf="@id/imgHeaderMain"
+            app:layout_constraintEnd_toEndOf="@id/imgHeaderMain"
+            app:tint="@color/white" />
+
+
+        <!--region tilProdcutTitle-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductTitle"
+            style="@style/CustomTilStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:hint="@string/et_product_title"
+            android:textColorHint="@color/colorSecondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgHeaderMain">
+
+            <com.example.firebasestudyproject.customwidgets.CustomEditText
+                android:id="@+id/etProductTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_product_title"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/et_padding"
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="@dimen/et_textSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--endregion tilProductTitle-->
+
+        <!--region tilProductPrice-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductPrice"
+            style="@style/CustomTilStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:hint="@string/et_product_price"
+            android:textColorHint="@color/colorSecondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductTitle">
+
+            <com.example.firebasestudyproject.customwidgets.CustomEditText
+                android:id="@+id/etProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_product_price"
+                android:inputType="number"
+                android:padding="@dimen/et_padding"
+
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="@dimen/et_textSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--endregion tilProductPrice-->
+
+        <!--region tilProductDescription-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductDescription"
+            style="@style/CustomTilStyle"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:hint="@string/et_product_desc"
+            android:textColorHint="@color/colorSecondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductPrice">
+
+            <com.example.firebasestudyproject.customwidgets.CustomEditText
+                android:id="@+id/etProductDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/et_product_desc"
+                android:inputType="textMultiLine"
+                android:padding="@dimen/et_padding"
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="@dimen/et_textSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--endregion tilProductDescription-->
+
+        <!--region tilProductQuantity-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilProductQuantity"
+            style="@style/CustomTilStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:hint="@string/et_product_Quantity"
+            android:textColorHint="@color/colorSecondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductDescription">
+
+            <com.example.firebasestudyproject.customwidgets.CustomEditText
+                android:id="@+id/etProductQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_product_Quantity"
+                android:inputType="number"
+                android:padding="@dimen/et_padding"
+
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="@dimen/et_textSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <!--endregion tilProductQuantity-->
+
+
+        <com.example.firebasestudyproject.customwidgets.CustomButton
+            android:id="@+id/btnProductSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_background"
+            android:onClick="@{clickListener::onClick}"
+            android:text="@string/lbl_submit"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilProductQuantity" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

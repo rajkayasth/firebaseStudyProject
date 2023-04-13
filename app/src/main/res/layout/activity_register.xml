@@ -144,12 +144,12 @@
                     android:layout_marginTop="20dp"
                     android:background="@color/white"
                     android:hint="@string/et_hint_password"
-                    app:passwordToggleTint="@color/black"
-                    app:passwordToggleEnabled="true"
                     android:textColorHint="@color/colorSecondaryText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tilEmailRegister">
+                    app:layout_constraintTop_toBottomOf="@id/tilEmailRegister"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/black">
 
                     <com.example.firebasestudyproject.customwidgets.CustomEditText
                         android:id="@+id/etPasswordRegister"
@@ -173,14 +173,14 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="20dp"
                     android:background="@color/white"
-                    app:passwordToggleTint="@color/black"
-
-                    app:passwordToggleEnabled="true"
                     android:hint="@string/et_hint_confirm_password"
+
                     android:textColorHint="@color/colorSecondaryText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tilPasswordRegister">
+                    app:layout_constraintTop_toBottomOf="@id/tilPasswordRegister"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/black">
 
                     <com.example.firebasestudyproject.customwidgets.CustomEditText
                         android:id="@+id/etConfPasswordRegister"
@@ -290,6 +290,20 @@
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgGoogleRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/item_grey_border_background"
+                    android:onClick="@{listner::onClick}"
+                    android:padding="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llAlreadyHaveAccount"
+                    app:srcCompat="@drawable/ic_google" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

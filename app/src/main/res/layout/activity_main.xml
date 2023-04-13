@@ -36,14 +36,15 @@
                 android:id="@+id/txtToolbarTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
+                android:paddingStart="50dp"
                 android:text="@string/lbl_home"
                 android:textColor="@color/white"
                 android:textSize="@dimen/title_text_size" />
 
         </androidx.appcompat.widget.Toolbar>
 
-
+<!--
         <com.example.firebasestudyproject.customwidgets.CustomTextView
             android:id="@+id/txtUserName"
             android:layout_width="match_parent"
@@ -53,9 +54,9 @@
             android:textColor="@color/colorText"
             android:textSize="@dimen/lbl_text_view_textSize"
             app:layout_constraintBottom_toTopOf="@id/btnLogout"
-            tools:text="demo User Name" />
+            tools:text="demo User Name" />-->
 
-        <!--region LoginButton-->
+      <!--  region LoginButton
         <com.example.firebasestudyproject.customwidgets.CustomButton
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
@@ -71,7 +72,7 @@
             android:textSize="@dimen/btn_textSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <!--endregion LoginButton-->
+        endregion LoginButton-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

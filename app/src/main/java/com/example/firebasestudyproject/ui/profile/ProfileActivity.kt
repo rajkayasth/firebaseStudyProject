@@ -3,12 +3,12 @@ package com.example.firebasestudyproject.ui.profile
 import android.Manifest
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.webkit.MimeTypeMap
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.FileProvider
@@ -18,7 +18,10 @@ import com.example.firebasestudyproject.base.BaseActivity
 import com.example.firebasestudyproject.databinding.ActivityProfileBinding
 import com.example.firebasestudyproject.firestore.FireStoreClass
 import com.example.firebasestudyproject.model.User
+import com.example.firebasestudyproject.ui.dashboard.DashBoardActivity
 import com.example.firebasestudyproject.utils.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -30,20 +33,22 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
     lateinit var dataBinding: ActivityProfileBinding
     lateinit var profileImg: AppCompatImageView
-    private lateinit var imageUri: Uri
+    private var profileImageUri: Uri? = null
     private lateinit var mUserDetails: User
+    private var mUserProfileImageURL: String = ""
 
     private val pickFromGalleryContract =
         registerForActivityResult(ActivityResultContracts.GetContent()) { imgUri ->
             imgUri?.let {
-                GlideLoader(this@ProfileActivity).loadImage(imgUri, profileImg)
+                profileImageUri = imgUri
+                GlideLoader(this@ProfileActivity).loadImage(profileImageUri!!, profileImg)
             }
-            Log.d("ImageUri", imgUri.toString())
+            Log.d("ImageUri", profileImageUri.toString())
         }
 
     private val cameraContracts = registerForActivityResult(ActivityResultContracts.TakePicture()) {
 
-        GlideLoader(this@ProfileActivity).loadImage(imageUri, profileImg)
+        GlideLoader(this@ProfileActivity).loadImage(profileImageUri!!, profileImg)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,16 +61,48 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
             mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
         dataBinding.apply {
-            etFirstNameProfile.isEnabled = false
+
             etFirstNameProfile.setText(mUserDetails.firstName)
-
-            etLastNameProfile.isEnabled = false
             etLastNameProfile.setText(mUserDetails.lastName)
-
             etEmailProfile.isEnabled = false
             etEmailProfile.setText(mUserDetails.email)
+
+            if (mUserDetails.profileCompleted == 0) {
+                txtToolbarTitle.text = getString(R.string.title_profile_completed)
+                etFirstNameProfile.isEnabled = false
+                etLastNameProfile.isEnabled = false
+            } else {
+                setupActionBar()
+                txtToolbarTitle.text = getString(R.string.title_edit_profile)
+                GlideLoader(this@ProfileActivity).loadImage(
+                    mUserDetails.image,
+                    dataBinding.imgUserPhoto
+                )
+
+                if (mUserDetails.mobile.isNotEmpty()) {
+                    etMobileProfile.setText(mUserDetails.mobile)
+                }
+                if (mUserDetails.gender == Constants.MALE) {
+                    rbMale.isChecked = true
+                } else {
+                    rbFeMale.isChecked = true
+                }
+
+
+            }
         }
 
+    }
+
+
+    private fun setupActionBar() {
+        setSupportActionBar(dataBinding.toolBarProfileScreen)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp)
+        }
+        dataBinding.toolBarProfileScreen.setNavigationOnClickListener { onBackPressed() }
     }
 
     override fun onClick(v: View?) {
@@ -80,7 +117,7 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
 
                                 CommonDialogs.setConfirmationDialogWithPositiveNaiveButton(
-                                    this@ProfileActivity,
+                                    this@ProfileActivity,"",
                                     "Please Select One Option",
                                     object : ConfirmationListener {
                                         override fun onCancelClick() {
@@ -89,8 +126,8 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
                                         override fun onYesClick() {
                                             Log.d("TAGGING", "onYesClick: ")
-                                            imageUri = createImageUri()!!
-                                            cameraContracts.launch(imageUri)
+                                            profileImageUri = createImageUri()!!
+                                            cameraContracts.launch(profileImageUri)
                                         }
 
                                         override fun onNoClick() {
@@ -140,26 +177,58 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
             }
             dataBinding.btnSaveProfile -> {
                 if (validateUserProfile()) {
-                    val userHashMap = HashMap<String, Any>()
 
-                    val mobileNumber =
-                        dataBinding.etMobileProfile.text.toString().trim { it <= ' ' }
-
-                    val gender = if (dataBinding.rbMale.isChecked) {
-                        Constants.MALE
-                    } else {
-                        Constants.FEMALE
-                    }
-                    if (mobileNumber.isNotEmpty()) {
-                        userHashMap[Constants.MOBILE] = mobileNumber
-                    }
-                    userHashMap[Constants.GENDER] = gender
                     showProgressDialog("")
-                    FireStoreClass().updateUserDetails(this@ProfileActivity, userHashMap)
-
+                    if (profileImageUri != null) {
+                        FireStoreClass().uploadImageToCloudStorage(
+                            this@ProfileActivity,
+                            profileImageUri,
+                            Constants.USER_PROFILE_IMAGE
+                        )
+                    } else {
+                        updateUserProfileDetails()
+                    }
                 }
             }
         }
+    }
+
+    private fun updateUserProfileDetails() {
+        val userHashMap = HashMap<String, Any>()
+
+        val firstName = dataBinding.etFirstNameProfile.text.toString().trim()
+        if (firstName != mUserDetails.firstName) {
+            userHashMap[Constants.FIRSTNAME] = firstName
+        }
+
+        val lastName = dataBinding.etLastNameProfile.text.toString().trim()
+        if (lastName != mUserDetails.lastName) {
+            userHashMap[Constants.LASTNAME] = lastName
+        }
+
+        val mobileNumber =
+            dataBinding.etMobileProfile.text.toString().trim { it <= ' ' }
+
+        val gender = if (dataBinding.rbMale.isChecked) {
+            Constants.MALE
+        } else {
+            Constants.FEMALE
+        }
+        if (mUserProfileImageURL.isNotEmpty()) {
+            userHashMap[Constants.IMAGE] = mUserProfileImageURL
+        }
+        if (mobileNumber.isNotEmpty() && mobileNumber != mUserDetails.mobile) {
+            userHashMap[Constants.MOBILE] = mobileNumber
+        }
+
+        if (gender.isNotEmpty() && gender != mUserDetails.gender) {
+            userHashMap[Constants.GENDER] = gender
+
+        }
+        userHashMap[Constants.GENDER] = gender
+        userHashMap[Constants.PROFILE_COMPLETED] = 1
+        // showProgressDialog("")
+        FireStoreClass().updateUserDetails(this@ProfileActivity, userHashMap)
     }
 
     private fun createImageUri(): Uri? {
@@ -171,11 +240,17 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
         )
     }
 
-     fun userProfileUpdateSuccess() {
+    fun userProfileUpdateSuccess() {
         hideProgressDialog()
         showErrorSnackBar("Profile Updated Successfully", false)
-        startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
+        startActivity(Intent(this@ProfileActivity, DashBoardActivity::class.java))
         finish()
+    }
+
+    fun imageUploadSuccess(imageURL: String) {
+        //hideProgressDialog()
+        mUserProfileImageURL = imageURL
+        updateUserProfileDetails()
     }
 
     private fun validateUserProfile(): Boolean {

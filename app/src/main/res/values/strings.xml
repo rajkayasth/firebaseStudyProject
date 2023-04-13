@@ -34,6 +34,7 @@
     <string name="lbl_female">Female</string>
     <string name="lbl_save">Save</string>
     <string name="lbl_home">Home</string>
+    <string name="lbl_double_tap_exit">Please Click again to exit the app.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_info">Info</string>
@@ -43,4 +44,38 @@
     <string name="lbl_ok">OK</string>
     <string name="permission_denied_message">Permission Denied</string>
     <string name="err_msg_enter_mobile">Please Enter Mobile Number</string>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_prodcut">Products</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_Settings">Settings</string>
+    <string name="lbl_edit">Edit</string>
+    <string name="btn_lbl_logout">LOgOut</string>
+    <string name="lbl_addresses">Address</string>
+    <string name="title_profile_completed">Profile Completed</string>
+    <string name="title_edit_profile">Edit Profile</string>
+    <string name="action_add_products">Add Product</string>
+    <string name="lbl_add_product">Add Product</string>
+    <string name="et_product_title">Product Title</string>
+    <string name="et_product_price">Product Price</string>
+    <string name="et_product_Quantity">Product Quantity</string>
+    <string name="err_product_title">Please Enter Product Title</string>
+    <string name="err_image_select">Please Selecet Product Image</string>
+    <string name="err_product_price">Please Enter Product Price</string>
+    <string name="err_product_desc">Please Enter Product Description</string>
+    <string name="err_product_quantity">Please Enter product Quantity</string>
+    <string name="et_product_desc">Product Description</string>
+    <string name="lbl_no_product">NO PRODUCT AVAILABLE</string>
+    <string name="lbl_no_dashboard_item">No DashBoard Item Available</string>
+    <string name="delete_product_msg">Are u sure you want to delete the product?</string>
+    <string name="lbl_yes">Yes</string>
+    <string name="lbl_no">No</string>
+    <string name="lbl_delete">DELETE</string>
+    <string name="lbl_product_details">Product Details</string>
+    <string name="lbl_product_description">Product Description</string>
+    <string name="lbl_stock_quantity">Stock Quantity</string>
+    <string name="lbl_Add_to_cart">ADD TO CART</string>
+
 </resources>
